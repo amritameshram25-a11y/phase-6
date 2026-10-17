@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Feedback</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>Student Feedback</h1>
+
+  <div id="feedbackList">Loading feedback...</div>
+
+  <a href="/">Back to Feedback Form</a>
+
+  <script>
+    async function loadFeedback() {
+      const list = document.getElementById("feedbackList");
+
+      try {
+        const response = await fetch("/api/feedback");
+        const feedbacks = await response.json();
+
+        list.innerHTML = "";
+
+        if (feedbacks.length === 0) {
+          list.textContent = "No feedback available.";
+          return;
+        }
+
+        feedbacks.forEach(function(item) {
+          const card = document.createElement("div");
+          card.textContent =
+            item.name + " | Rating: " + item.rating +
+            " | " + item.comment;
+
+          list.appendChild(card);
+        });
+      } catch (error) {
+        list.textContent = "Could not load feedback.";
+      }
+    }
+
+    loadFeedback();
+  </script>
+
+</body>
+</html>
