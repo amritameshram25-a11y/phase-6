@@ -13,7 +13,7 @@ const feedbackSchema = new mongoose.Schema({
     max: 5
   },
 
-  comment: {
+  comments: {
     type: String,
     required: true
   }

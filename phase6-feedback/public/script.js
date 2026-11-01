@@ -6,12 +6,12 @@ form.addEventListener("submit", async function (event) {
 
   const name = document.getElementById("name").value;
   const rating = document.getElementById("rating").value;
-  const comment = document.getElementById("comment").value;
+  const comment = document.getElementById("comments").value;
 
   const feedback = {
     name: name,
     rating: rating,
-    comment: comment
+    comments: comment
   };
 
   try {
